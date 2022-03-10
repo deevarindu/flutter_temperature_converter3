@@ -10,16 +10,23 @@ class RiwayatPerhitungan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var list = listHasil.map((String value) {
+      return Container(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          value,
+          style: TextStyle(fontSize: 15),
+        ),
+      );
+    }).toList();
     return Expanded(
-      child: ListView.builder(
-        itemCount: listHasil.length,
-        itemBuilder: (context, index) {
-          return Text(
-            "${listHasil[index]}",
-            style: TextStyle(fontSize: 15),
-          );
-        },
-      ),
+      child: list.toString() == '[]'
+          ? Center(
+              child: Text('Tidak ada riwayat perhitungan'),
+            )
+          : ListView(
+              children: list,
+            ),
     );
   }
 }
